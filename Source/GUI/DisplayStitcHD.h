@@ -26,11 +26,10 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 using namespace std;
 
-#include <QtGui/qmainwindow.h>
-#include <QtGui/qlabel.h>
-#include <Qt/qevent.h>
-#include <Qt/qcoreapplication.h>
-#include <QtGui/qscrollarea.h>
+#include <QtWidgets/qmainwindow.h>
+#include <QtWidgets/qlabel.h>
+#include <QtCore/qcoreapplication.h>
+#include <QtWidgets/qscrollarea.h>
 
 class DisplayStitcHD : public QMainWindow
 {

@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StitcHD", "StitcHD\StitcHD.vcxproj", "{44B37E1E-15C0-4B71-B365-C90F724460C4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D108B676-83F1-4043-96C9-B38B1114183A} = {D108B676-83F1-4043-96C9-B38B1114183A}
@@ -40,7 +42,8 @@ Global
 		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Debug|x64.ActiveCfg = Debug|Win32
 		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Release|Win32.ActiveCfg = Release|Win32
 		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Release|Win32.Build.0 = Release|Win32
-		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Release|x64.ActiveCfg = Release|Win32
+		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Release|x64.ActiveCfg = Release|x64
+		{98201FF0-C9B2-4CDD-BDD6-9B98F707D26D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,7 +16,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "MainWindow.h"
-#include <QtGui/QApplication>
+#include <QtWidgets\qapplication.h>
 
 int main(int argc, char *argv[])
 {

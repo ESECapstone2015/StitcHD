@@ -20,21 +20,34 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Config.hpp"
 
-#include <QtGui/qmainwindow.h>
-#include <QtGui/qwidget.h>
-#include <QtGui/qlineedit.h>
-#include <QtGui/qtextedit.h>
-#include <QtGui/qboxlayout.h>
-#include <QtGui/qlabel.h>
-#include <QtGui/qcheckbox.h>
-#include <QtGui/qradiobutton.h>
-#include <QtGui/qpushbutton.h>
+#include <QtWidgets\qmainwindow.h>
+#include <QtWidgets\qwidget.h>
+#include <QtWidgets\qerrormessage.h>
+#include <QtWidgets\qmessagebox.h>
+#include <QtWidgets\qbuttongroup.h>
+#include <QtWidgets\qpushbutton.h>
+#include <QtWidgets\qradiobutton.h>
+#include <QtWidgets\qlabel.h>
+#include <QtWidgets\qboxlayout.h>
+#include <QtWidgets\qlineedit.h>
+#include <QtWidgets\qtextedit.h>
+#include <QtWidgets\qcheckbox.h>
 #include <QtCore/qobject.h>
-#include <QtGui/qmessagebox.h>
-#include <QtGui/qerrormessage.h>
-#include <QtGui/qbuttongroup.h>
 #include <QtCore/qstring.h>
-#include <QtGui/qgroupbox.h>
+
+//#include <QtGui/qmainwindow.h>
+//#include <QtGui/qwidget.h>
+//#include <QtGui/qlineedit.h>
+//#include <QtGui/qtextedit.h>
+//#include <QtGui/qboxlayout.h>
+//#include <QtGui/qlabel.h>
+//#include <QtGui/qcheckbox.h>
+//#include <QtGui/qradiobutton.h>
+//#include <QtGui/qpushbutton.h>
+//#include <QtGui/qmessagebox.h>
+//#include <QtGui/qerrormessage.h>
+//#include <QtGui/qbuttongroup.h>
+//#include <QtGui/qgroupbox.h>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/types_c.h>

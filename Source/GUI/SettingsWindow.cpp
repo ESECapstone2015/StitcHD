@@ -19,7 +19,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "SettingsWindow.h"
 
-#include <QtGui/qsizepolicy.h>
+#include <QtWidgets\qsizepolicy.h>
 
 QGroupBox* SettingsWindow::buildStitcherSettings()
 {

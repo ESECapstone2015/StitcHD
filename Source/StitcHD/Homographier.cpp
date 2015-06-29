@@ -38,6 +38,8 @@ using namespace cv;
 #if COMPILE_GPU == 1
 #include <opencv2/gpu/gpumat.hpp>
 #include <opencv2/gpu/gpu.hpp>
+#include <opencv2/nonfree/gpu.hpp>
+#include <opencv2/nonfree/nonfree.hpp>
 using namespace cv::gpu;
 #endif
 
@@ -284,7 +286,7 @@ Mat Homographier::findHomography_GPU(Mat &image1, Mat &image2)
 	Timer::send(Timer::Homography, id, Timer::HmgTimeval::Detect);
 
 	// matching descriptors
-    BruteForceMatcher_GPU< L2<float> > matcher;
+    BruteForceMatcher_GPU_base/*< L2<float> >*/ matcher;
     GpuMat trainIdx, distance;
     matcher.matchSingle(descriptors1GPU, descriptors2GPU, trainIdx, distance);
 
@@ -298,7 +300,7 @@ Mat Homographier::findHomography_GPU(Mat &image1, Mat &image2)
     gpu_surfer.downloadKeypoints(keypoints2GPU, keypoints2);
     gpu_surfer.downloadDescriptors(descriptors1GPU, descriptors1);
     gpu_surfer.downloadDescriptors(descriptors2GPU, descriptors2);
-    BruteForceMatcher_GPU< L2<float> >::matchDownload(trainIdx, distance, matches);
+    BruteForceMatcher_GPU_base/*< L2<float> >*/::matchDownload(trainIdx, distance, matches);
 
 	if (keypoints1.size() == 0 || keypoints2.size() == 0)
 	{

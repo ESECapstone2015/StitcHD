@@ -31,13 +31,14 @@ using namespace std;
 #include <KsMedia.h>      // For KSPROPERTY_CAMERACONTROL_FLAGS_*
 #include <Utility.h>
 
-#include <Qt/qobject.h>
-#include <Qt/qthread.h>
-#include <Qt/qvector.h>
-#include <QtGui/qmainwindow.h>
-#include <QtGui/qlabel.h>
-#include <Qt/qcoreapplication.h>
-#include <QtGui/qdockwidget.h>
+#include <QtCore/qobject.h>
+#include <QtCore/qthread.h>
+#include <QtCore/qvector.h>
+#include <QtWidgets/qmainwindow.h>
+#include <QtWidgets/qlabel.h>
+#include <QtCore/qcoreapplication.h>
+#include <QtWidgets/qdockwidget.h>
+#include <QtWidgets/qgroupbox.h>
 
 class DisplayCameraFrame : public QMainWindow
 {
