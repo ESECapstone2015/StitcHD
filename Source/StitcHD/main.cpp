@@ -22,7 +22,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 #include "Config.hpp"
 #include "Utils.h"
 #include "Timer.hpp"
-#include "DShowUtility.h"
+//#include "DShowUtility.h"
 
 #include <stdlib.h>
 #include <iostream>

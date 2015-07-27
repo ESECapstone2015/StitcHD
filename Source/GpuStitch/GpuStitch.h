@@ -22,7 +22,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <opencv2/core/core.hpp>
 
-#include "cuda_runtime.h"
+//#include "cuda_runtime.h"
 
 using namespace std;
 using namespace cv;

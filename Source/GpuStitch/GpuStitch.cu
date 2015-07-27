@@ -20,6 +20,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "GpuStitch.h"
 
+
 #include "math_functions.h"
 #include "cuda_runtime.h"
 #include "common_functions.h"
