@@ -38,6 +38,7 @@ using namespace std;
 #include <QtWidgets\qgroupbox.h>
 #include <QtWidgets\qspinbox.h>
 #include <QtWidgets\qslider.h>
+#include <QtWidgets\qcombobox.h>
 #include <QtCore/qobject.h>
 #include <QtCore/qstring.h>
 
@@ -120,7 +121,8 @@ private:
 		*hmgAlphaLabel, *hessianLabel, *flannPrecisionLabel, *flannBuildLabel,
 		*flannMemoryLabel, *flannFracLabel, *toleranceLabel, *ransacLabel;
 	QSpinBox *hessianBox, *nOctaveBox, *nOctaveLayerBox, *flannChecksBox, *flannTreesBox;
-	QPushButton *setDefaultsButton, *saveFrameButton, *recordButton;
+	QPushButton *setDefaultsButton, *saveFrameButton, *recordButton, *serialConnectButton;
+	QComboBox* comPortBx;
 
 	DisplayStitcHD *displayWindow;
 

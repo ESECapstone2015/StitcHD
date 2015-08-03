@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DisplayCameras.cpp" />
+    <ClCompile Include="DisplayStitchHD.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_DisplayCameras.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -181,8 +182,10 @@
     </ClCompile>
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pollingthread.cpp" />
     <ClCompile Include="PropertyFunctions.cpp" />
     <ClCompile Include="ptzProto2.cpp" />
+    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="SettingsWindow.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
@@ -228,7 +231,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="pollingthread.h" />
     <ClInclude Include="PropertyFunctions.h" />
+    <ClInclude Include="Serial.h" />
     <ClInclude Include="Utility.h" />
     <CustomBuild Include="DisplayStitcHD.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

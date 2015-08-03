@@ -21,6 +21,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 #include "VideoStitcher.hpp"
 #include "MainWindow.h"
 #include "Utils.h"
+#include "pollingthread.h"
 
 #include <string>
 #include <iostream>
@@ -36,7 +37,10 @@ class DisplayStitcHD : public QMainWindow
 	Q_OBJECT
 
 public:
-
+	
+	void StartPolling(QString comPort);
+	char* listCOM();
+	
 	VideoStitcher stitcher;
 
 	DisplayStitcHD(QWidget *parent, Config& config)
@@ -84,6 +88,10 @@ public:
 		stitcher.stop();
 		stitcher.timer.writeToFile();
 	}
+
+public slots:
+	void onUpdatePosition(qint64 posx, qint64 posy, qint64 anglex, qint64 angley, qint64 anglez);
+	void debugBox(QString msg);
 
 protected:
 

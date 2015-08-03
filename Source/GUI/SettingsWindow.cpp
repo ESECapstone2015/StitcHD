@@ -657,6 +657,9 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 {
 	QBoxLayout *mainLayout = new QVBoxLayout;
 	QBoxLayout *hBox;
+
+
+	char * COMlist;
 	
 	// Show fps
 	QString tip = "<p>Displays the framerate for each major module.</p>";
@@ -692,6 +695,14 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	connect(recordButton, SIGNAL(clicked()), this, SLOT(toggleRecording()));
 	hBox->addWidget(recordButton);
 
+	//HMC
+	serialConnectButton = new QPushButton("Connect HMC");
+	connect(serialConnectButton, SIGNAL(clicked()), this, SLOT(displayWindow->StartPolling(comPortBx->currentText)));
+	hBox->addWidget(recordButton);
+	comPortBx = new QComboBox;
+	hBox->addWidget(comPortBx);
+	//HMC
+
 	mainLayout->addLayout(hBox);
 
 	QWidget *centralWidget = new QWidget;
@@ -703,6 +714,26 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	displayWindow->setAttribute(Qt::WA_DeleteOnClose);
 	displayWindow->setMinimumSize(600, 400);
 	displayWindow->show();
+
+	//HMC
+	COMlist = displayWindow->listCOM();
+	
+	if (COMlist == NULL)
+	{
+		QMessageBox errBox;
+		errBox.setText("ERROR - NO COM PORTS AVAILABLE");
+		errBox.exec();
+	}
+	else
+	{
+		for (int i = 0; i < sizeof(COMlist); i++)
+		{
+			comPortBx->addItem("COM" + i);
+		}
+	}
+	//HMC
+
+
 
 	connect(displayWindow, SIGNAL(destroyed()), this, SLOT(close()));
 
