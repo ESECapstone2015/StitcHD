@@ -1,5 +1,7 @@
 #include "Serial.h"
 
+#include <QtCore/qdebug.h>
+
 Serial::~Serial(){
     CloseHandle(serialHandle);
 }

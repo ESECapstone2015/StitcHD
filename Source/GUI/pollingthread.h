@@ -1,9 +1,9 @@
 #ifndef POLLINGTHREAD_H
 #define POLLINGTHREAD_H
 
-#include <QThread>
-#include <QTimer>
-#include <QTextStream>
+#include <QtCore/qthread.h>
+#include <QtCore/qtimer.h>
+#include <QtCore/qtextstream.h>
 #include <iostream>
 #include "Serial.h"
 
