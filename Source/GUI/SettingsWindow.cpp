@@ -16,6 +16,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #define LABEL_WIDTH 30
+#define DEFAULT_COMPORT "COM8"
 
 #include "SettingsWindow.h"
 
@@ -701,8 +702,8 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	hBox->addWidget(recordButton);
 	comPortBx = new QComboBox;
 	hBox->addWidget(comPortBx);
-	//HMC
 
+	//HMC
 	mainLayout->addLayout(hBox);
 
 	QWidget *centralWidget = new QWidget;
@@ -723,6 +724,7 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 		QMessageBox errBox;
 		errBox.setText("ERROR - NO COM PORTS AVAILABLE");
 		errBox.exec();
+		comPortBx->addItem(DEFAULT_COMPORT);
 	}
 	else
 	{
@@ -731,9 +733,9 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 			comPortBx->addItem("COM" + i);
 		}
 	}
+
+
 	//HMC
-
-
 
 	connect(displayWindow, SIGNAL(destroyed()), this, SLOT(close()));
 
