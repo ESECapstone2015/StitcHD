@@ -31,6 +31,7 @@ using namespace std;
 #include <QtWidgets/qlabel.h>
 #include <QtCore/qcoreapplication.h>
 #include <QtWidgets/qscrollarea.h>
+#include <QtWidgets/qscrollbar.h>
 
 class DisplayStitcHD : public QMainWindow
 {

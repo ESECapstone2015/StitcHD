@@ -8,9 +8,9 @@
 //See http://stackoverflow.com/questions/304986/how-do-i-get-the-friendly-name-of-a-com-port-in-windows.
 #include <stdio.h>
 #include <Windows.h>
-#include <QString>
-#include <QStringList>
-#include <QDebug>
+#include <QtCore/qstring.h>
+#include <QtCore/qstringlist.h>
+#include <QtCore/qdebug.h>
 
 #define COMPORT L"COM8"
 #define PANRATE 2
