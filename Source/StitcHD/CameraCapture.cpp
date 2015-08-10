@@ -34,8 +34,32 @@ int CameraCapture::initialize()
 	if (!video.isOpened())
 	{
 		cout << "ERROR: CameraCapture for video " << id << " could not initialize." << endl;
+		
+		testing = true;
 
-		cout << "For now, using stock video..." << endl;
+		cout << "For now, using test images..." << endl;
+		switch (id)
+		{
+		case 0:
+			frame = imread("../../Test/image2.bmp");
+			break;
+		case 1:
+			frame = imread("../../Test/image3.bmp");
+			break;
+		case 2:
+			frame = imread("../../Test/image1.bmp");
+			break;
+		default:
+			cout << "No test image exists" << endl;
+			return -1;
+		}
+
+		if (frame.data == NULL){
+			cout << "Could not read test image..." << endl;
+			return -1;
+		}
+
+		/*cout << "For now, using stock video..." << endl;
 		switch (id)
 		{
 		case 0:
@@ -50,7 +74,7 @@ int CameraCapture::initialize()
 		}
 
 		if (!video.isOpened())
-			return -1;
+			return -1;*/
 	}
 	else
 	{
@@ -192,7 +216,7 @@ void CameraCapture::getFrame()
 {
 	Timer::send(Timer::Camera, id, Timer::CamTimeval::Start);
 
-	if (video.isOpened() && video.grab())
+	if (!testing && video.isOpened() && video.grab())
 	{
 		if (video.retrieve(frame))
 		{

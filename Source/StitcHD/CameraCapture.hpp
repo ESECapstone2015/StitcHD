@@ -25,6 +25,8 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
+
+#include <QtGui\qpixmap.h>
 using namespace cv;
 
 class __declspec(dllexport) CameraCapture
@@ -76,7 +78,7 @@ public:
 
 private:
 
-	bool inverted, running, initialized;
+	bool inverted, running, initialized, testing;
 	int width, height;
 	HANDLE threadHandle;
 	HANDLE startEvent;
