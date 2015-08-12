@@ -41,6 +41,7 @@ using namespace std;
 #include <QtWidgets\qcombobox.h>
 #include <QtCore/qobject.h>
 #include <QtCore/qstring.h>
+#include <QtCore/qsignalmapper.h>
 
 #include <QtCore/qcoreapplication.h>
 #include <QtCore/qeventloop.h>
@@ -56,7 +57,6 @@ public:
 
 public slots:
 	//Settings button callbacks
-	
 	void showFpsChanged(int);
 
 	void interpolationChanged(int);

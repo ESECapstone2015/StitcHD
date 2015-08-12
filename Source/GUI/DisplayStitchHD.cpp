@@ -21,12 +21,22 @@ void DisplayStitcHD::StartPolling(QString comPort){
 	QThread* thread = new QThread;
 	PollingThread* workerThread = new PollingThread();
 
+	QSignalMapper * mapper = new QSignalMapper(this);
+
+	// Set up signal mapper to pass argument to new thread.
+	connect(mapper,
+		SIGNAL(mapped(QString)),
+		workerThread,
+		SLOT(pollPort(QString)));
+
+	mapper->setMapping(thread, comPort);
+
 	//Connect slots and signals to update dot position.
 	// Start polling after thread start.
 	connect(thread,
 		SIGNAL(started()),
-		workerThread,
-		SLOT(pollPort(comPort)));
+		mapper,
+		SLOT(map()));
 	// Update position form telemetry data.
 	connect(workerThread,
 		SIGNAL(updatePosition(qint64, qint64, qint64, qint64, qint64)),

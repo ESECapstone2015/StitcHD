@@ -30,6 +30,7 @@ using namespace std;
 #include <QtWidgets/qmainwindow.h>
 #include <QtWidgets/qlabel.h>
 #include <QtCore/qcoreapplication.h>
+#include <QtCore/qsignalmapper.h>
 #include <QtWidgets/qscrollarea.h>
 #include <QtWidgets/qscrollbar.h>
 
@@ -39,7 +40,6 @@ class DisplayStitcHD : public QMainWindow
 
 public:
 	
-	void StartPolling(QString comPort);
 	char* listCOM();
 	
 	VideoStitcher stitcher;
@@ -93,6 +93,7 @@ public:
 public slots:
 	void onUpdatePosition(qint64 posx, qint64 posy, qint64 anglex, qint64 angley, qint64 anglez);
 	void debugBox(QString msg);
+	void StartPolling(QString comPort);
 
 protected:
 

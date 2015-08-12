@@ -696,12 +696,7 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	connect(recordButton, SIGNAL(clicked()), this, SLOT(toggleRecording()));
 	hBox->addWidget(recordButton);
 
-	//HMC
-	serialConnectButton = new QPushButton("Connect HMC");
-	connect(serialConnectButton, SIGNAL(clicked()), this, SLOT(displayWindow->StartPolling(comPortBx->currentText)));
-	hBox->addWidget(recordButton);
-	comPortBx = new QComboBox;
-	hBox->addWidget(comPortBx);
+	
 
 	//HMC
 	mainLayout->addLayout(hBox);
@@ -715,6 +710,28 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	displayWindow->setAttribute(Qt::WA_DeleteOnClose);
 	displayWindow->setMinimumSize(600, 400);
 	displayWindow->show();
+
+	//HMC
+	QSignalMapper * mapper = new QSignalMapper(this);
+
+	// Set up signal mapper to pass argument to new thread.
+	connect(mapper,
+		SIGNAL(mapped(QString)),
+		displayWindow,
+		SLOT(StartPolling(QString)));
+
+	mapper->setMapping(serialConnectButton, comPortBx->currentText);
+
+	//Connect slots and signals to send comport name to polling thread.
+	connect(thread,
+		SIGNAL(clicked()),
+		mapper,
+		SLOT(map()));
+
+	serialConnectButton = new QPushButton("Connect HMC");
+	hBox->addWidget(recordButton);
+	comPortBx = new QComboBox;
+	hBox->addWidget(comPortBx);
 
 	//HMC
 	COMlist = displayWindow->listCOM();

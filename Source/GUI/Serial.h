@@ -40,7 +40,7 @@ public:
     Serial(){}
     ~Serial();
     int getData(HANDLE port);
-	HANDLE openSerial(LPCTSTR comPort);
+	HANDLE openSerial(LPCWSTR comPort);
     int getx();
     int gety();
     int getxangle();

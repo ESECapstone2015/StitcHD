@@ -6,11 +6,11 @@ Serial::~Serial(){
     CloseHandle(serialHandle);
 }
 
-HANDLE Serial::openSerial(LPCTSTR comPort)
+HANDLE Serial::openSerial(LPCWSTR comPort)
 {
 
 	//PortChat::Main();
-	HANDLE m_hCommPort = ::CreateFile(comPort,
+	HANDLE m_hCommPort = ::CreateFileW(comPort,
 		GENERIC_READ,  // access ( read and write)
 		0,                           // (share) 0:cannot share the COM port
 		0,                           // security  (None)
@@ -20,10 +20,10 @@ HANDLE Serial::openSerial(LPCTSTR comPort)
 		);
 
 	if (m_hCommPort != INVALID_HANDLE_VALUE){
-        qDebug("Successfully opened %s\n", COMPORT);
+		qDebug("Successfully opened %s\n", QString::fromUtf8((const char *)(comPort)) );
 	}
 	else {
-        qDebug("Error opening %s: error num : %d\n", COMPORT, GetLastError());
+		qDebug("Error opening %s: error num : %d\n", QString::fromUtf8((const char *)(comPort)), GetLastError());
 	}
 
 	DCB dcb = { 0 };

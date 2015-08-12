@@ -3,7 +3,7 @@
 void PollingThread::pollPort(QString comPort){
     // Open Serial port
 	Serial * serialThread = new Serial();
-	HANDLE serialPort = serialThread->openSerial(comPort.toStdString.c_str());
+	HANDLE serialPort = serialThread->openSerial((LPCWSTR)(comPort.toStdString().c_str()));
 
     int i = 0;
 
