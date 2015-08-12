@@ -41,13 +41,13 @@ int CameraCapture::initialize()
 		switch (id)
 		{
 		case 0:
-			frame = imread("../../Test/image2.bmp");
+			frame = imread("../../Test/s3.png");
 			break;
 		case 1:
-			frame = imread("../../Test/image3.bmp");
+			frame = imread("../../Test/s2.png");
 			break;
 		case 2:
-			frame = imread("../../Test/image1.bmp");
+			frame = imread("../../Test/s4.png");
 			break;
 		default:
 			cout << "No test image exists" << endl;
