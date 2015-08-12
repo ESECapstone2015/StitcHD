@@ -2,8 +2,8 @@
 
 void PollingThread::pollPort(QString comPort){
     // Open Serial port
-	Serial * serialThread = new Serial(LPCTSTR(comPort));
-    HANDLE serialPort = serialThread->openSerial();
+	Serial * serialThread = new Serial();
+	HANDLE serialPort = serialThread->openSerial(comPort.toStdString.c_str());
 
     int i = 0;
 
