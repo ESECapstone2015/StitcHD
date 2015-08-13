@@ -92,6 +92,10 @@ private:
 		return ((CameraCapture*)arg)->run();
 	}
 
+	// IPC handlers
+	BOOL ReadSlot();
+	BOOL WINAPI MakeSlot(LPTSTR lpszSlotName);
+
 	// Thread function
 	int run();
 };
