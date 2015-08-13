@@ -9,9 +9,9 @@
 
 
 class PollingThread : public QObject {
-    Q_OBJECT
+	Q_OBJECT
 signals:
-    void updatePosition(qint64 posx, qint64 posy, qint64 anglex, qint64 angley, qint64 anglez);
+    Q_SIGNAL void updatePosition(qint64 posx, qint64 posy, qint64 anglex, qint64 angley, qint64 anglez);
     void sendDebug(QString msg);
 public slots:
 	void pollPort(QString comPort);

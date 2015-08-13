@@ -720,10 +720,10 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 		displayWindow,
 		SLOT(StartPolling(QString)));
 
-	mapper->setMapping(serialConnectButton, comPortBx->currentText);
+	mapper->setMapping(serialConnectButton, comPortBx->currentText());
 
 	//Connect slots and signals to send comport name to polling thread.
-	connect(thread,
+	connect(serialConnectButton,
 		SIGNAL(clicked()),
 		mapper,
 		SLOT(map()));
