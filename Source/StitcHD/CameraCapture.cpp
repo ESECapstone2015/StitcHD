@@ -37,9 +37,6 @@ int CameraCapture::initialize()
 	if (initialized)
 		return 0;
 
-	// create mailslot for QuadCamPC communication
-	MakeSlot(SlotName);
-
 	video.open(id);
 
 	if (!video.isOpened())
@@ -48,16 +45,22 @@ int CameraCapture::initialize()
 		
 		testing = true;
 
+		// create mailslot for QuadCamPC communication
+		MakeSlot(SlotName);
+
 		cout << "For now, using test images..." << endl;
 		switch (id)
 		{
 		case 0:
-			frame = imread("../../Test/s3.png");
+			frame = imread("../../Test/s1.png");
 			break;
 		case 1:
 			frame = imread("../../Test/s2.png");
 			break;
 		case 2:
+			frame = imread("../../Test/s3.png");
+			break;
+		case 3:
 			frame = imread("../../Test/s4.png");
 			break;
 		default:
