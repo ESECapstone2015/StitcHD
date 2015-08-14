@@ -46,22 +46,22 @@ int CameraCapture::initialize()
 		testing = true;
 
 		// create mailslot for QuadCamPC communication
-		MakeSlot(SlotName);
+		//MakeSlot(SlotName);
 
 		cout << "For now, using test images..." << endl;
 		switch (id)
 		{
 		case 0:
-			frame = imread("../../Test/s1.png");
+			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam1000000.png");
 			break;
 		case 1:
-			frame = imread("../../Test/s2.png");
+			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam2000000.png");
 			break;
 		case 2:
-			frame = imread("../../Test/s3.png");
+			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam3000000.png");
 			break;
 		case 3:
-			frame = imread("../../Test/s4.png");
+			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam4000000.png");
 			break;
 		default:
 			cout << "No test image exists" << endl;
@@ -230,12 +230,12 @@ void CameraCapture::getFrame()
 {
 	Timer::send(Timer::Camera, id, Timer::CamTimeval::Start);
 
-	if (testing)
+	/*if (testing)
 	{
 		ReadSlot();
-	}
+	}*/
 
-	if (video.isOpened() && video.grab())
+	if (!testing && video.isOpened() && video.grab())
 	{
 		if (video.retrieve(frame))
 		{
