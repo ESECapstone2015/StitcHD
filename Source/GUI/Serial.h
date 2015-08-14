@@ -12,12 +12,12 @@
 #include <QtCore/qstringlist.h>
 #include <QtCore/qdebug.h>
 
-#define COMPORT L"COM8"
+#define COMPORT L"COM4"
 #define PANRATE 2
-#define PICYSIZE 3072
-#define PICXSIZE 1308
-#define WINXSIZE PICXSIZE-480
-#define WINYSIZE PICYSIZE-640
+#define PICYSIZE 2560
+#define PICXSIZE 1440
+#define WINXSIZE PICXSIZE//-480
+#define WINYSIZE PICYSIZE//-640
 #define CNTR_INIT_X (PICXSIZE/2)-240
 #define CNTR_INIT_Y (PICYSIZE/2)-320
 #define SLOW_THRESH 7

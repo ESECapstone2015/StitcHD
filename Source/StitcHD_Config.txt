@@ -1,13 +1,13 @@
 --- StitcHD Config File ---
-CamCount: 3
+CamCount: 2
 CamWidths: 1280 1280 1280 1280
 CamHeights: 720 720 720 720
 CamInverted: 0 0 0 0
-HmgCount: 2
+HmgCount: 1
 HmgTargets: 0 1 0 2 1 3 2 3
 HmgDirections: R L U D U D R L
-FrameOverlap: 67
-HmgTransitionAlpha: 15
+FrameOverlap: 50
+HmgTransitionAlpha: 10
 HessianThreshold: 500
 nOctaves: 4
 nOctaveLayers: 4
@@ -20,7 +20,7 @@ flannTargetPrecision: 90
 flannBuildWeight: 1
 flannMemoryWeight: 0
 flannSampleFraction: 10
-matchTolerance: 39
+matchTolerance: 35
 ransacReprojThresh: 30
 AlphaBlend: 3
 ExpBlendValue: 59

@@ -1,11 +1,13 @@
 #include "DisplayStitcHD.h"
 
+#define DEFAULT_COM_PORT "COM4"
+
 void DisplayStitcHD::onUpdatePosition(qint64 posx, qint64 posy, qint64 anglex, qint64 angley, qint64 anglez){
 
 
 	// May need to be reversed (posx<->posy)
-	scroll->verticalScrollBar()->setValue(posy);
-	scroll->horizontalScrollBar()->setValue(posx);
+	scroll->verticalScrollBar()->setValue(posx);
+	scroll->horizontalScrollBar()->setValue(posy);
 	/*
 	ui->dot->setPixmap(QPixmap::fromImage(image.copy(posy, posx, posy + 640, posx + 480)));
 	ui->Lbl_xangle->setText(QString::number(anglex));
@@ -16,7 +18,7 @@ void DisplayStitcHD::onUpdatePosition(qint64 posx, qint64 posy, qint64 anglex, q
 	*/
 }
 // Head Mounted Controller Related.
-void DisplayStitcHD::StartPolling(QString comPort){
+void DisplayStitcHD::StartPolling(){
 	//Create worker thread.
 	QThread* thread = new QThread;
 	PollingThread* workerThread = new PollingThread();
@@ -29,7 +31,7 @@ void DisplayStitcHD::StartPolling(QString comPort){
 		workerThread,
 		SLOT(pollPort(QString)));
 
-	mapper->setMapping(thread, comPort);
+	mapper->setMapping(thread, DEFAULT_COM_PORT);
 
 	//Connect slots and signals to update dot position.
 	// Start polling after thread start.

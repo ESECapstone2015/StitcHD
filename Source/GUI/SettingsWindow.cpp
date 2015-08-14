@@ -16,7 +16,7 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #define LABEL_WIDTH 30
-#define DEFAULT_COMPORT "COM8"
+#define DEFAULT_COMPORT "COM4"
 
 #include "SettingsWindow.h"
 
@@ -696,9 +696,18 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	connect(recordButton, SIGNAL(clicked()), this, SLOT(toggleRecording()));
 	hBox->addWidget(recordButton);
 
-	
+	displayWindow = new DisplayStitcHD(this, *config);
+	displayWindow->setAttribute(Qt::WA_DeleteOnClose);
+	displayWindow->setMinimumSize(600, 400);
 
 	//HMC
+	serialConnectButton = new QPushButton("Connect HMC");
+
+	//Connect slots and signals to send comport name to polling thread.
+	connect(serialConnectButton, SIGNAL(clicked()), displayWindow, SLOT(StartPolling()));
+
+	hBox->addWidget(serialConnectButton);
+	
 	mainLayout->addLayout(hBox);
 
 	QWidget *centralWidget = new QWidget;
@@ -706,35 +715,19 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 	this->setCentralWidget(centralWidget);
 	setWindowTitle("StitcHD Settings");
 
-	displayWindow = new DisplayStitcHD(this, *config);
-	displayWindow->setAttribute(Qt::WA_DeleteOnClose);
-	displayWindow->setMinimumSize(600, 400);
+	
 	displayWindow->show();
 
-	//HMC
-	QSignalMapper * mapper = new QSignalMapper(this);
+	
 
-	// Set up signal mapper to pass argument to new thread.
-	connect(mapper,
-		SIGNAL(mapped(QString)),
-		displayWindow,
-		SLOT(StartPolling(QString)));
+	
 
-	mapper->setMapping(serialConnectButton, comPortBx->currentText());
-
-	//Connect slots and signals to send comport name to polling thread.
-	connect(serialConnectButton,
-		SIGNAL(clicked()),
-		mapper,
-		SLOT(map()));
-
-	serialConnectButton = new QPushButton("Connect HMC");
-	hBox->addWidget(recordButton);
-	comPortBx = new QComboBox;
-	hBox->addWidget(comPortBx);
+	
+	/*comPortBx = new QComboBox;
+	hBox->addWidget(comPortBx);*/
 
 	//HMC
-	COMlist = displayWindow->listCOM();
+	/*COMlist = displayWindow->listCOM();
 	
 	if (COMlist == NULL)
 	{
@@ -749,7 +742,7 @@ SettingsWindow::SettingsWindow(QWidget *parent, Config* config)
 		{
 			comPortBx->addItem("COM" + i);
 		}
-	}
+	}*/
 
 
 	//HMC
