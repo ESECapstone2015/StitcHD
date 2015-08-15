@@ -35,6 +35,9 @@ VideoStitcher::VideoStitcher(Config& c)
 	hmgCntlRunning = false;
 	hmgCntlThreadHandle = INVALID_HANDLE_VALUE;
 	hmgLatency = -1;
+
+	// create mailslot to receive messages from QuadCamPC application
+	MakeSlot(SlotName);
 }
 
 VideoStitcher::~VideoStitcher()

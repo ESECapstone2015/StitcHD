@@ -24,10 +24,21 @@ using namespace cv;
 #include <iostream>
 using namespace std;
 
+#include <windows.h>
+#include <tchar.h>
+#include <stdio.h>
+#include <strsafe.h>
+
+HANDLE hSlot;
+LPTSTR SlotName = TEXT("\\\\.\\mailslot\\QuadCamPC\\ImageReady");
+
 int CameraCapture::initialize()
 {
 	if (initialized)
 		return 0;
+
+	// create mailslot for QuadCamPC communication
+	MakeSlot(SlotName);
 
 	video.open(id);
 
@@ -216,7 +227,12 @@ void CameraCapture::getFrame()
 {
 	Timer::send(Timer::Camera, id, Timer::CamTimeval::Start);
 
-	if (!testing && video.isOpened() && video.grab())
+	if (testing)
+	{
+		ReadSlot();
+	}
+
+	if (video.isOpened() && video.grab())
 	{
 		if (video.retrieve(frame))
 		{
@@ -239,4 +255,93 @@ void CameraCapture::getFrame()
 	}
 
 	Timer::send(Timer::Camera, id, Timer::CamTimeval::End);
+}
+
+BOOL CameraCapture::ReadSlot()
+{
+	DWORD cbMessage, cMessage, cbRead;
+	BOOL fResult;
+	LPTSTR lpszBuffer;
+	TCHAR achID[80];
+	DWORD cAllMessages;
+	HANDLE hEvent;
+	OVERLAPPED ov;
+
+	cbMessage = cMessage = cbRead = 0;
+
+	hEvent = CreateEvent(NULL, FALSE, FALSE, TEXT("ExampleSlot"));
+	if (NULL == hEvent)
+		return FALSE;
+	ov.Offset = 0;
+	ov.OffsetHigh = 0;
+	ov.hEvent = hEvent;
+
+	fResult = GetMailslotInfo(hSlot, // mailslot handle 
+		(LPDWORD)NULL,               // no maximum message size 
+		&cbMessage,                   // size of next message 
+		&cMessage,                    // number of messages 
+		(LPDWORD)NULL);              // no read time-out 
+
+	if (!fResult)
+	{
+		printf("GetMailslotInfo failed with %d.\n", GetLastError());
+		return FALSE;
+	}
+
+	if (cbMessage == MAILSLOT_NO_MESSAGE)
+	{
+		printf("Waiting for a message...\n");
+		return TRUE;
+	}
+
+	cAllMessages = cMessage;
+
+	while (cMessage != 0)  // retrieve all messages
+	{
+		
+		switch (id)
+		{
+		case 0:
+			frame = imread("../../Test/s3.png");
+			break;
+		case 1:
+			frame = imread("../../Test/s2.png");
+			break;
+		case 2:
+			frame = imread("../../Test/s4.png");
+			break;
+		default:
+			cout << "No test image exists" << endl;
+			return -1;
+		}
+
+		fResult = GetMailslotInfo(hSlot,  // mailslot handle 
+			(LPDWORD)NULL,               // no maximum message size 
+			&cbMessage,                   // size of next message 
+			&cMessage,                    // number of messages 
+			(LPDWORD)NULL);              // no read time-out 
+
+		if (!fResult)
+		{
+			printf("GetMailslotInfo failed (%d)\n", GetLastError());
+			return FALSE;
+		}
+	}
+	CloseHandle(hEvent);
+	return TRUE;
+}
+
+BOOL WINAPI CameraCapture::MakeSlot(LPTSTR lpszSlotName)
+{
+	hSlot = CreateMailslot(lpszSlotName,
+		0,                             // no maximum message size 
+		MAILSLOT_WAIT_FOREVER,         // no time-out for operations 
+		(LPSECURITY_ATTRIBUTES)NULL); // default security
+
+	if (hSlot == INVALID_HANDLE_VALUE)
+	{
+		printf("CreateMailslot failed with %d\n", GetLastError());
+		return FALSE;
+	}
+	return TRUE;
 }

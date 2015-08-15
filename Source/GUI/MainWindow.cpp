@@ -20,7 +20,10 @@ along with StitcHD.  If not, see <http://www.gnu.org/licenses/>.
 #include "DisplayCameras.h"
 
 #include <iostream>
+
 using namespace std;
+
+
 
 QPixmap Mat2QPixmap(const Mat3b mat)
 {
@@ -158,6 +161,8 @@ MainWindow::~MainWindow()
 {
 	config.writeToFile();
 }
+
+
 
 void MainWindow::camCountChanged(int value)
 {
