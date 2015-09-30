@@ -164,6 +164,11 @@ protected:
 			saveNextFrame = true;
 			return true;
 		}
+		// Pause HMG event
+		else if (e->type() == QEvent::User + 6)
+		{
+			stitcher.hmgPaused = true;
+		}
 		else
 			return QWidget::event(e);
 	}
@@ -172,6 +177,7 @@ private:
 
 	bool running;
 	bool saveNextFrame;
+	bool pauseHMG;
 	Config& config;
 	QLabel *frame;
 	QLabel *stitchLatency, *hmgLatency;

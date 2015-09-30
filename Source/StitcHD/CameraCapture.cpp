@@ -51,7 +51,21 @@ int CameraCapture::initialize()
 		cout << "For now, using test images..." << endl;
 		switch (id)
 		{
+
 		case 0:
+			frame = imread("../../Test/BL.bmp");
+			break;
+		case 1:
+			frame = imread("../../Test/BR.bmp");
+			break;
+		case 2:
+			frame = imread("../../Test/TL.bmp");
+			break;
+		case 3:
+			frame = imread("../../Test/TR.bmp");
+			break;
+
+		/*case 0:
 			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam1000000.png");
 			break;
 		case 1:
@@ -62,7 +76,7 @@ int CameraCapture::initialize()
 			break;
 		case 3:
 			frame = imread("../../../QuadCamPC/QuadCamPC/avisynth/cam4000000.png");
-			break;
+			break;*/
 		default:
 			cout << "No test image exists" << endl;
 			return -1;

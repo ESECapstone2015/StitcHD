@@ -921,3 +921,9 @@ void SettingsWindow::toggleRecording()
 
 	recording = !recording;
 }
+
+void SettingsWindow::pauseHMG()
+{
+	// Tell the stitcher to pause the homographiers
+	QCoreApplication::postEvent(displayWindow, new QEvent(QEvent::Type(QEvent::User + 6)), Qt::LowEventPriority);
+}

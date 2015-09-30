@@ -87,6 +87,7 @@ public slots:
 	void setDefaults();
 	void saveFrame();
 	void toggleRecording();
+	void pauseHMG();
 
 protected:
 

@@ -45,6 +45,8 @@ public:
 	// The latency of the homographierController
 	int hmgLatency;
 
+	bool hmgPaused;
+
 	// Constructor
 	VideoStitcher(Config&);
 
@@ -81,6 +83,7 @@ private:
 	bool hmgCntlRunning;
 	HANDLE hmgCntlThreadHandle;
 	HANDLE startHmgEvent, stopHmgEvent;
+	Mat hmgs[MAX_CAMERAS];
 
 	// Stitches images together
 	ImageStitcher imageStitcher;

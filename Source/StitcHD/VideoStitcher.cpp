@@ -323,18 +323,19 @@ int VideoStitcher::getImage()
 		if (frames[i].cols <= 0 || frames[i].rows <= 0)
 			return -1;
 	}
-	
-	Mat hmgs[MAX_CAMERAS];
 
-	for (int i=0; i<homographiers.size(); i++)
+	if (!hmgPaused)
 	{
-		homographiers[i]->homography.copyTo(hmgs[i]);
-		
-		if (config.showMatches && homographiers[i]->matchesFrame.rows > 0 && homographiers[i]->matchesFrame.cols > 0)
+		for (int i = 0; i < homographiers.size(); i++)
 		{
-			stringstream name;
-			name << "Homographier " << i;
-			imshow(name.str(), homographiers[i]->matchesFrame);
+			homographiers[i]->homography.copyTo(hmgs[i]);
+
+			if (config.showMatches && homographiers[i]->matchesFrame.rows > 0 && homographiers[i]->matchesFrame.cols > 0)
+			{
+				stringstream name;
+				name << "Homographier " << i;
+				imshow(name.str(), homographiers[i]->matchesFrame);
+			}
 		}
 	}
 
